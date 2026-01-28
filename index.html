@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Spotlight Journal - Lưu giữ yêu thương dành cho bất kỳ ai bạn trân quý. Ứng dụng nhật ký, lịch trình và quản lý chi tiêu cho Fan và Gia đình."
+    />
+    <meta
+      name="keywords"
+      content="Spotlight Journal, nhật ký, lịch trình, fandom, gia đình, tình yêu, quản lý chi tiêu"
+    />
+    <meta
+      property="og:title"
+      content="Spotlight Journal - Love Has No Boundaries"
+    />
+    <meta
+      property="og:description"
+      content="Không gian riêng tư để lưu giữ từng khoảnh khắc, từng cảm xúc cho người bạn trân quý nhất."
+    />
+    <meta property="og:image" content="./assets/idol_screen.png" />
+    <title>Spotlight Journal - Yêu Thương Không Giới Hạn</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#FFB7B2",
+              secondary: "#E2C6FF",
+              accent: "#B2F7EF",
+              background: "#FFF9F0",
+              text: "#4A4A4A",
+            },
+            fontFamily: {
+              heading: ["Nunito", "sans-serif"],
+              body: ["Quicksand", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Quicksand", sans-serif;
+        background-color: #fff9f0;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Nunito", sans-serif;
+      }
+      .gradient-text {
+        background: linear-gradient(45deg, #ff9a9e, #fecfef);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+      .floating-delayed {
+        animation: float 6s ease-in-out 3s infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+      .phone-frame {
+        border: 12px solid #fff;
+        border-radius: 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        background: #000;
+        overflow: hidden;
+        position: relative;
+        z-index: 10;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+      }
+      .typewriter-cursor::after {
+        content: "|";
+        animation: blink 1s step-start infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fff9f0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #ffb7b2;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ff9e99;
+      }
+    </style>
+  </head>
+  <body class="text-text selection:bg-primary selection:text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card transition-all duration-300 top-0">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center">
+            <span class="text-2xl font-extrabold text-primary tracking-wider"
+              >Spotlight Journal</span
+            >
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#features"
+              class="text-text hover:text-primary font-bold transition-colors"
+              >Tính Năng</a
+            >
+            <a
+              href="#stories"
+              class="text-text hover:text-primary font-bold transition-colors"
+              >Câu Chuyện</a
+            >
+            <a
+              href="#"
+              class="bg-primary text-white px-6 py-2 rounded-full font-bold hover:bg-red-300 transition-all shadow-lg transform hover:-translate-y-1"
+              >Tải App</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-red-50 to-purple-50"
+    >
+      <!-- Abstract Background Shapes -->
+      <div
+        class="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl mix-blend-multiply filter animate-blob"
+      ></div>
+      <div
+        class="absolute top-40 right-10 w-72 h-72 bg-secondary/30 rounded-full blur-3xl mix-blend-multiply filter animate-blob animation-delay-2000"
+      ></div>
+      <div
+        class="absolute -bottom-8 left-20 w-72 h-72 bg-accent/30 rounded-full blur-3xl mix-blend-multiply filter animate-blob animation-delay-4000"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Left Content -->
+          <div data-aos="fade-right" data-aos-duration="1000">
+            <div
+              class="inline-block px-4 py-2 bg-white rounded-full shadow-sm text-primary font-bold mb-6 text-sm uppercase tracking-wide"
+            >
+              ✨ Yêu Thương Không Giới Hạn
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
+              Lưu Giữ <br />
+              <span class="gradient-text">Yêu Thương</span> <br />
+              Dành Cho...
+            </h1>
+            <div class="h-12 lg:h-16 mb-6">
+              <span
+                id="typewriter"
+                class="text-3xl lg:text-5xl font-bold text-gray-400 typewriter-cursor"
+              ></span>
+            </div>
+            <p class="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
+              Một không gian riêng tư được thiết kế tinh tế để bạn lưu giữ từng
+              khoảnh khắc, từng rung động cảm xúc cho người mà bạn trân quý
+              nhất.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                class="px-8 py-4 bg-primary text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17.5,3H6.5C4.01,3,2,5.01,2,7.5v9C2,18.99,4.01,21,6.5,21h11c2.49,0,4.5-2.01,4.5-4.5v-9C22,5.01,19.99,3,17.5,3z M17.5,19h-11C5.12,19,4,17.88,4,16.5v-9C4,6.12,5.12,5,6.5,5h11C18.88,5,20,6.12,20,7.5v9C20,17.88,18.88,19,17.5,19z M12,7l-5,3l5,3l5-3L12,7z M12,13l-5,3l5,3l5-3L12,13z"
+                  />
+                </svg>
+                Tải App Ngay
+              </button>
+              <button
+                class="px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-full font-bold text-lg shadow-md hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Xem Demo
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Content (Visual) -->
+          <div class="relative" data-aos="fade-left" data-aos-duration="1200">
+            <div class="relative z-10 w-full max-w-sm mx-auto floating">
+              <div class="phone-frame">
+                <img
+                  src="./assets/idol_screen.png"
+                  alt="App Screenshot Main"
+                  class="w-full h-auto object-cover rounded-3xl"
+                />
+              </div>
+            </div>
+
+            <!-- Floating Decorations -->
+            <div
+              class="absolute top-0 right-0 z-20 floating-delayed bg-white p-3 rounded-2xl shadow-lg transform rotate-12"
+            >
+              <span class="text-4xl">🐱</span>
+            </div>
+            <div
+              class="absolute bottom-20 left-0 z-20 floating bg-white p-3 rounded-2xl shadow-lg transform -rotate-12"
+            >
+              <span class="text-4xl">❤️</span>
+            </div>
+            <div
+              class="absolute top-1/2 -right-4 z-0 w-64 h-64 bg-yellow-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emotional Features Section -->
+    <section id="features" class="py-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
+        <!-- Feature 1: Diary -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="relative order-2 lg:order-1" data-aos="fade-up-right">
+            <div
+              class="relative z-10 phone-frame max-w-xs mx-auto transform -rotate-3 hover:rotate-0 transition-transform duration-500"
+            >
+              <img
+                src="./assets/detail_entry.png"
+                alt="Diary Entry"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+            <!-- Accent Images -->
+            <div
+              class="absolute top-10 -right-10 w-2/3 z-20 floating shadow-2xl rounded-xl overflow-hidden glass-card"
+            >
+              <img
+                src="./assets/add_diary_post_screen_top.png"
+                alt="Mood Selector"
+                class="w-full h-auto"
+              />
+            </div>
+            <div
+              class="absolute -bottom-5 -left-10 w-1/2 z-20 floating-delayed shadow-2xl rounded-xl overflow-hidden glass-card"
+            >
+              <img
+                src="./assets/add_diary_post_screen_bot.png"
+                alt="Spending"
+                class="w-full h-auto"
+              />
+            </div>
+          </div>
+          <div class="order-1 lg:order-2" data-aos="fade-up-left">
+            <div
+              class="inline-block p-2 bg-pink-100 rounded-lg text-pink-500 mb-4"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-6 text-gray-800">
+              Ghi Lại Từng <span class="text-primary">Rung Động</span>
+            </h2>
+            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+              Hôm nay người ấy thế nào? Vui hay buồn? Cùng ghi lại những dòng
+              cảm xúc chân thật nhất kèm hình ảnh đáng nhớ, mood hiện tại và cả
+              chi phí cho buổi hẹn hò (hoặc concert!)
+            </p>
+            <ul class="space-y-3 text-gray-700 font-medium">
+              <li class="flex items-center gap-3">
+                <span
+                  class="w-6 h-6 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-xs"
+                  >✓</span
+                >
+                Hỗ trợ soạn thảo văn bản phong phú (Rich Text)
+              </li>
+              <li class="flex items-center gap-3">
+                <span
+                  class="w-6 h-6 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-xs"
+                  >✓</span
+                >
+                Theo dõi cảm xúc (Mood Tracker) mỗi ngày
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Feature 2: Schedule -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="order-1" data-aos="fade-up-right">
+            <div
+              class="inline-block p-2 bg-purple-100 rounded-lg text-purple-500 mb-4"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-6 text-gray-800">
+              Không Bỏ Lỡ <span class="text-secondary">Khoảnh Khắc</span>
+            </h2>
+            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+              Sinh nhật, ngày kỷ niệm, hay lịch trình comeback? Spotlight
+              Journal nhắc bạn để mọi khoảnh khắc quan trọng đều trở nên trọn
+              vẹn và được chuẩn bị chu đáo.
+            </p>
+            <a
+              href="#"
+              class="text-secondary font-bold hover:underline flex items-center gap-2"
+            >
+              Khám phá tính năng Timeline
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <div class="relative order-2" data-aos="fade-up-left">
+            <!-- Back Glow -->
+            <div
+              class="absolute inset-0 bg-secondary/20 rounded-full blur-3xl transform scale-90"
+            ></div>
+            <!-- Main Image -->
+            <div
+              class="relative z-10 phone-frame max-w-xs mx-auto transform rotate-3 hover:rotate-0 transition-transform duration-500"
+            >
+              <img
+                src="./assets/time_line.png"
+                alt="Timeline"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+            <!-- Accent -->
+            <div
+              class="absolute top-1/2 -translate-y-1/2 -left-8 w-2/3 z-20 floating glass-card rounded-xl p-2 shadow-xl"
+            >
+              <img
+                src="./assets/screen_lich_trinh.png"
+                alt="Add Schedule"
+                class="w-full h-auto rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3: Finance Management -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="relative order-2 lg:order-1" data-aos="fade-right">
+            <!-- Back Glow -->
+            <div
+              class="absolute inset-0 bg-blue-100 rounded-full blur-3xl transform scale-90"
+            ></div>
+
+            <div class="relative z-10 phone-frame max-w-xs mx-auto">
+              <img
+                src="./assets/tom_tat_screen.png"
+                alt="Stats"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+            <!-- Floater -->
+            <div
+              class="absolute bottom-10 left-0 w-2/3 z-20 floating-delayed glass-card rounded-xl shadow-2xl"
+            >
+              <img
+                src="./assets/finance.png"
+                alt="Finance"
+                class="w-full h-auto rounded-lg"
+              />
+            </div>
+          </div>
+          <div class="order-1 lg:order-2" data-aos="fade-left">
+            <div
+              class="inline-block p-2 bg-blue-100 rounded-lg text-blue-500 mb-4"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-6 text-gray-800">
+              Quản Lý <span class="text-blue-500">Chi Tiêu</span>
+            </h2>
+            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+              Yêu thương nhưng vẫn lý trí. Hệ thống quản lý chi tiêu minh bạch
+              giúp bạn nắm rõ từng khoản tiền dành cho người thương, từ những
+              món quà nhỏ đến những dự định lớn.
+            </p>
+            <ul class="space-y-3 text-gray-700 font-medium">
+              <li class="flex items-center gap-3">
+                <span
+                  class="w-6 h-6 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center text-xs"
+                  >✓</span
+                >
+                Biểu đồ thống kê trực quan
+              </li>
+              <li class="flex items-center gap-3">
+                <span
+                  class="w-6 h-6 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center text-xs"
+                  >✓</span
+                >
+                Phân loại khoản chi thông minh
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Feature 4: Personalization (New Block) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="order-1" data-aos="fade-up-right">
+            <div
+              class="inline-block p-2 bg-pink-100 rounded-lg text-pink-500 mb-4"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-4xl font-extrabold mb-6 text-gray-800">
+              Không Gian <span class="text-secondary">Của Bạn</span>
+            </h2>
+            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+              Tùy biến giao diện ứng dụng theo màu sắc cá nhân (Theme) để mỗi
+              lần mở app là một niềm vui. Bộ sưu tập chủ đề đa dạng, cute và
+              luôn cập nhật mới.
+            </p>
+            <div class="flex gap-3">
+              <span
+                class="px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-bold"
+                >Pastel Pink</span
+              >
+              <span
+                class="px-4 py-2 bg-purple-50 text-purple-600 rounded-full text-sm font-bold"
+                >Galaxy Purple</span
+              >
+              <span
+                class="px-4 py-2 bg-yellow-50 text-yellow-600 rounded-full text-sm font-bold"
+                >Sunny Yellow</span
+              >
+            </div>
+          </div>
+          <div class="relative order-2" data-aos="fade-up-left">
+            <!-- Back Glow -->
+            <div
+              class="absolute inset-0 bg-pink-100 rounded-full blur-3xl transform scale-90"
+            ></div>
+
+            <div
+              class="relative z-10 phone-frame max-w-xs mx-auto transform -rotate-3 hover:rotate-0 transition-transform duration-500"
+            >
+              <img
+                src="./assets/cua_hang_chu_de.png"
+                alt="Store"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+            <!-- Decorative elements -->
+            <div
+              class="absolute -top-5 -right-5 w-16 h-16 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full animate-bounce shadow-lg flex items-center justify-center text-white font-bold opacity-80 decoration-slice"
+            >
+              New!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials / Use Cases -->
+    <section id="stories" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-4xl font-extrabold mb-4">
+            Mọi Tình Yêu Đều Xứng Đáng
+          </h2>
+          <p class="text-xl text-gray-500">
+            Hàng ngàn câu chuyện được lưu giữ mỗi ngày
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="p-8 rounded-2xl bg-gray-50 hover:bg-red-50 transition-colors duration-300 border border-gray-100"
+            data-aos="flip-left"
+            data-aos-delay="100"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-red-200 rounded-full flex items-center justify-center text-xl"
+              >
+                👶
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800">Mẹ Bỉm Sữa</h4>
+                <p class="text-sm text-gray-500">Hồ Chí Minh</p>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">
+              "Mình dùng app để theo dõi hành trình lớn khôn của bé Bông. Mỗi
+              ngày một tấm ảnh, một dòng ghi chú, sau này nhìn lại thật ý
+              nghĩa."
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="p-8 rounded-2xl bg-gray-50 hover:bg-purple-50 transition-colors duration-300 border border-gray-100"
+            data-aos="flip-left"
+            data-aos-delay="200"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center text-xl"
+              >
+                👵
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800">Cháu Ngoan</h4>
+                <p class="text-sm text-gray-500">Hà Nội</p>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">
+              "Nơi lưu giữ kỷ niệm với người bà kính yêu. Những câu chuyện bà
+              kể, những món bà nấu, mình đều note lại hết vào đây."
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="p-8 rounded-2xl bg-gray-50 hover:bg-pink-50 transition-colors duration-300 border border-gray-100"
+            data-aos="flip-left"
+            data-aos-delay="300"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-pink-200 rounded-full flex items-center justify-center text-xl"
+              >
+                🎤
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800">Blink Chính Hiệu</h4>
+                <p class="text-sm text-gray-500">Đà Nẵng</p>
+              </div>
+            </div>
+            <p class="text-gray-600 italic">
+              "Support BlackPink mãi đỉnh! Lịch trình World Tour, chi phí vé máy
+              bay, outfit đi concert mình quản lý hết trên Spotlight Journal."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-8 md:mb-0 text-center md:text-left">
+            <h3 class="text-3xl font-bold text-primary mb-2">
+              Spotlight Journal
+            </h3>
+            <p class="text-gray-400">Yêu thương không giới hạn.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button
+              class="bg-white text-gray-900 px-6 py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors"
+            >
+              <span class="text-2xl">🍎</span>
+              <div class="text-left leading-tight">
+                <div class="text-xs">Download on the</div>
+                <div class="text-lg">App Store</div>
+              </div>
+            </button>
+            <button
+              class="bg-white text-gray-900 px-6 py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors"
+            >
+              <span class="text-2xl">🤖</span>
+              <div class="text-left leading-tight">
+                <div class="text-xs">GET IT ON</div>
+                <div class="text-lg">Google Play</div>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm"
+        >
+          &copy; 2024 Spotlight Journal. All rights reserved. Made with ❤️.
+        </div>
+      </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: true,
+        offset: 100,
+      });
+
+      // Typewriter Effect
+      const textElement = document.getElementById("typewriter");
+      const phrases = [
+        "Thần Tượng Của Bạn",
+        "Ba Mẹ Yêu Dấu",
+        "Bé Cưng",
+        "Boss Mèo",
+        "Người Ấy",
+      ];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typeSpeed = 100;
+
+      function type() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+          textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+          charIndex--;
+          typeSpeed = 50;
+        } else {
+          textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+          charIndex++;
+          typeSpeed = 100;
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true;
+          typeSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          typeSpeed = 500; // Pause before new word
+        }
+
+        setTimeout(type, typeSpeed);
+      }
+
+      document.addEventListener("DOMContentLoaded", type);
+    </script>
+  </body>
+</html>
